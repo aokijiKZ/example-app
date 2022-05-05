@@ -7,6 +7,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Middleware\CheckAdmin;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,28 +37,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::middleware([
-//     'auth:sanctum',
-//     config('jetstream.auth_session'),
-//     'verified'
-// ])->group(function () {
-//     Route::get('/dashboard', function () {
-//         //Query ผ่าน Model
-//         $users = User::orderBy('id', 'asc')->paginate(5);
-//         return view('dashboard', compact('users'));
-//     })->name('dashboard');
-// });
-
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
-        //Query ผ่าน DB โดยตรง ไม่มี Model ใน project
-        //ไม่มี diffForHumans ให้ใช้โดยตรง ต้องไปใช้ Carbon\Carbon::parse($user->created_at)->diffForHumans() ในการเเปลงเวลา
-        $users = DB::table('users')->orderBy('id', 'asc')->paginate(5);
+        //Query ผ่าน Model
+        $users = User::orderBy('id', 'asc')->paginate(5);
         return view('dashboard', compact('users'));
     })->name('dashboard');
 });
+
+
+// Route::middleware([
+//     'auth:sanctum',
+//     config('jetstream.auth_session'),
+//     'verified'
+// ])->group(function () {
+//     Route::get('/dashboard', function () {
+//         //Query ผ่าน DB โดยตรง ไม่มี Model ใน project
+//         //ไม่มี diffForHumans ให้ใช้โดยตรง ต้องไปใช้ Carbon\Carbon::parse($user->created_at)->diffForHumans() ในการเเปลงเวลา
+//         $users = DB::table('users')->orderBy('id', 'asc')->paginate(5);
+//         return view('dashboard', compact('users'));
+//     })->name('dashboard');
+// });
+
+Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
