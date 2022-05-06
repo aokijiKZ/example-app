@@ -10,7 +10,7 @@
             <div class="row">
                 <div class="col-md-8">
                     @if (session('success'))
-                        <div class="alert alert-success">{{session('success')}}</div>
+                        <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     <div class="card">
                         <div class="card-header">Department table</div>
@@ -20,6 +20,7 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">CreateBy</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +28,12 @@
                                     <tr>
                                         <th scope="row">{{ $department->id }}</th>
                                         <td>{{ $department->department_name }}</td>
-                                        <td>{{ $department->user->name }}</td>  {{-- function user ใน model department เเละ fill name ของ table --}}
+                                        <td>{{ $department->user->name }}</td> {{-- function user ใน model department เเละ fill name ของ table --}}
+                                        <td>
+                                            <a href="{{ url('/department/edit/'.$department->id) }}"
+                                                class="btn btn-warning">Edit</a>
+
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -41,14 +47,14 @@
                     <div class="card">
                         <div class="card-header">Form</div>
                         <div class="card-body">
-                            <form action="{{ route('addDepartment')}}" method="POST">
+                            <form action="{{ route('addDepartment') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="department_name">Rank</label><br>
                                     <input type="text" class="form-control" name="department_name">
                                 </div>
                                 @error('department_name')
-                                    <div class="alert alert-danger mt-2">{{$message}}</div>
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                                 <br>
                                 <input type="submit" value="save" class="btn btn-primary">
