@@ -20,6 +20,7 @@ use App\Models\Department;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/index', function () {
     return view('index');
 });
@@ -50,6 +51,15 @@ Route::middleware([
     })->name('dashboard');
 });
 
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
+    Route::post('/department/add', [DepartmentController::class, 'store'])->name('addDepartment');
+});
+
 
 // Route::middleware([
 //     'auth:sanctum',
@@ -63,6 +73,3 @@ Route::middleware([
 //         return view('dashboard', compact('users'));
 //     })->name('dashboard');
 // });
-
-Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
-Route::post('/department/add', [DepartmentController::class,'store'])->name('addDepartment');

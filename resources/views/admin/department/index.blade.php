@@ -19,7 +19,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">User ID</th>
+                                    <th scope="col">CreateBy</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,7 +27,7 @@
                                     <tr>
                                         <th scope="row">{{ $department->id }}</th>
                                         <td>{{ $department->department_name }}</td>
-                                        <td>{{ $department->user_id }}</td>
+                                        <td>{{ $department->user->name }}</td>  {{-- function user ใน model department เเละ fill name ของ table --}}
                                     </tr>
                                 @endforeach
                             </tbody>
