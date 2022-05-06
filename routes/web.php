@@ -8,6 +8,7 @@ use App\Http\Middleware\CheckAdmin;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
+use App\Models\Department;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +65,4 @@ Route::middleware([
 // });
 
 Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
+Route::post('/department/add', [DepartmentController::class,'store'])->name('addDepartment');
