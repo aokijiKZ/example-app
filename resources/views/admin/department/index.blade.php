@@ -32,7 +32,7 @@
                                         <td>{{ $department->user->name }}</td> {{-- function user ใน model department เเละ fill name ของ table --}}
                                         <td>
                                             <a href="{{ url('/department/edit/' . $department->id) }}"
-                                                class="btn btn-warning">Edit</a>
+                                                class="btn btn-primary">Edit</a>
                                             <a href="{{ url('/department/delete/' . $department->id) }}"
                                                 class="btn btn-danger">Delete</a>
                                         </td>
@@ -67,7 +67,7 @@
                                             <td>
                                                 <a href="{{ url('/department/recover/' . $trashDepartment->id) }}"
                                                     class="btn btn-warning">Recover</a>
-                                                <a href="{{ url('/department/permanentdelete/' . $trashDepartment->id) }}"
+                                                <a href="{{ url('/department/permanentDelete/' . $trashDepartment->id) }}"
                                                     class="btn btn-danger">PermanentDelete</a>
                                             </td>
                                         </tr>

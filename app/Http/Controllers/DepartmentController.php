@@ -68,4 +68,9 @@ class DepartmentController extends Controller
         return redirect()->back()->with('success','Data restored successfully!');
     }
 
+    public function permanentDelete($id){
+        $dataDelete = Department::onlyTrashed()->find($id)->forceDelete(); 
+        return redirect()->back()->with('success','Successfully deleted data permanently!');
+    }
+
 }
