@@ -9,6 +9,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\DepartmentController;
 use App\Models\Department;
+use App\Http\Controllers\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,12 +57,17 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    //Department
     Route::get('/department/all', [DepartmentController::class, 'index'])->name('department');
     Route::post('/department/add', [DepartmentController::class, 'store'])->name('addDepartment');
     Route::get('/department/edit/{id}', [DepartmentController::class, 'edit']);
     Route::post('/department/update/{id}', [DepartmentController::class, 'update']);
     Route::get('/department/delete/{id}', [DepartmentController::class, 'delete']);
     Route::get('/department/permanentDelete/{id}', [DepartmentController::class, 'permanentDelete']);
+
+    //Service
+    Route::get('/service/all', [ServiceController::class, 'index'])->name('service');
+    Route::post('/service/add', [ServiceController::class, 'store'])->name('addService');
 });
 
 
