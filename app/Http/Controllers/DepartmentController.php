@@ -63,4 +63,9 @@ class DepartmentController extends Controller
         return redirect()->back()->with('success','Deleted data successfully!');
     }
 
+    public function recover($id){
+        $restore = Department::withTrashed()->find($id)->restore();
+        return redirect()->back()->with('success','Data restored successfully!');
+    }
+
 }

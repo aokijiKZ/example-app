@@ -61,6 +61,7 @@ Route::middleware([
     Route::get('/department/edit/{id}', [DepartmentController::class, 'edit']);
     Route::post('/department/update/{id}', [DepartmentController::class, 'update']);
     Route::get('/department/delete/{id}', [DepartmentController::class, 'delete']);
+    Route::get('/department/recover/{id}', [DepartmentController::class, 'recover']);
 });
 
 
