@@ -13,7 +13,28 @@
                         <div class="alert alert-success">{{session('success')}}</div>
                     @endif
                     <div class="card">
-                        <div class="card-header">Data table</div>
+                        <div class="card-header">Department table</div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">User ID</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($departments as $department)
+                                    <tr>
+                                        <th scope="row">{{ $department->id }}</th>
+                                        <td>{{ $department->department_name }}</td>
+                                        <td>{{ $department->user_id }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="m-3">
+                            {!! $departments->links('pagination::bootstrap-5') !!}
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">

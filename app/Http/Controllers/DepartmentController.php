@@ -10,7 +10,8 @@ class DepartmentController extends Controller
 {
     //
     public function index(){
-        return view('admin.department.index');
+        $departments = Department::orderBy('id', 'asc')->paginate(5);
+        return view('admin.department.index', compact('departments'));
     }
 
     public function store(Request $request){
@@ -21,12 +22,13 @@ class DepartmentController extends Controller
         [
             'department_name.required'=>'Please input department name.',  //ปรับ error message
             'department_name.max'=>'Input values up to 100 characters.',
+            'department_name.unique'=>'This department already has a name.'
         ]);
 
         $department = new Department;
         $department->department_name = $request->department_name;
         $department->user_id = Auth::user()->id;
-        $department->save();
+        $department->save();   //สามารถบันทึกข้อมูลอีกเเบบได้ โดย insert data ลง db โดยตรงโดยใช้ Query builder
 
         return redirect()->back()->with('success','Save data successfully!');
     }
