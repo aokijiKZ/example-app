@@ -26,13 +26,14 @@
                             <tbody>
                                 @foreach ($departments as $department)
                                     <tr>
-                                        <th scope="row">{{ $department->id }}</th>
+                                        <th scope="row">{{ $departments->firstItem()+$loop->index }}</th>
                                         <td>{{ $department->department_name }}</td>
                                         <td>{{ $department->user->name }}</td> {{-- function user ใน model department เเละ fill name ของ table --}}
                                         <td>
-                                            <a href="{{ url('/department/edit/'.$department->id) }}"
+                                            <a href="{{ url('/department/edit/' . $department->id) }}"
                                                 class="btn btn-warning">Edit</a>
-
+                                            <a href="{{ url('/department/delete/' . $department->id) }}"
+                                                class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -41,6 +42,38 @@
                         <div class="m-3">
                             {!! $departments->links('pagination::bootstrap-5') !!}
                         </div>
+                    </div>
+                    <div class="card my-2">
+                        <div class="card-header">Trash</div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">CreateBy</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($trashDepartments as $trashDepartment)
+                                    <tr>
+                                        <th scope="row">{{ $trashDepartments->firstItem()+$loop->index }}</th>
+                                        <td>{{ $trashDepartment->department_name }}</td>
+                                        <td>{{ $trashDepartment->user->name }}</td> {{-- function user ใน model department เเละ fill name ของ table --}}
+                                        <td>
+                                            <a href="{{ url('/department/edit/' . $department->id) }}"
+                                                class="btn btn-warning">Recover</a>
+                                            <a href="{{ url('/department/delete/' . $department->id) }}"
+                                                class="btn btn-danger">PermanentDelete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="m-3">
+                            {!! $trashDepartments->links('pagination::bootstrap-5') !!}
+                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-4">

@@ -11,7 +11,8 @@ class DepartmentController extends Controller
     //
     public function index(){
         $departments = Department::orderBy('id', 'asc')->paginate(5);
-        return view('admin.department.index', compact('departments'));
+        $trashDepartments = Department::onlyTrashed()->paginate(5);
+        return view('admin.department.index', compact('departments','trashDepartments'));
     }
 
     public function store(Request $request){
@@ -55,6 +56,11 @@ class DepartmentController extends Controller
         ]);
         
         return redirect()->route('department')->with('success','Updated data successfully!');
+    }
+
+    public function delete($id){
+        $department = Department::find($id)->delete();
+        return redirect()->back()->with('success','Deleted data successfully!');
     }
 
 }
