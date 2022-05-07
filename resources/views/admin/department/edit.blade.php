@@ -13,7 +13,7 @@
                         <div class="alert alert-success">{{session('success')}}</div>
                     @endif
                     <div class="col-md-8">
-                        <div class="card">
+                        <div class="card verflow-hidden shadow-xl sm:rounded-lg">
                             <div class="card-header">Edit Form</div>
                             <div class="card-body">
                                 <form action="{{ url('/department/update/'.$department->id)}}" method="POST">

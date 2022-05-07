@@ -13,7 +13,7 @@
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
                     @if (count($departments)>0)
-                        <div class="card">
+                        <div class="card overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="card-header">Department table</div>
                         <table class="table">
                             <thead>
@@ -47,7 +47,7 @@
                     @endif
                     
                     @if (count($trashDepartments) > 0)
-                        <div class="card my-2">
+                        <div class="card my-2 overflow-hidden shadow-xl sm:rounded-lg">
                             <div class="card-header">Trash</div>
                             <table class="table">
                                 <thead>
@@ -81,7 +81,7 @@
                     @endif
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="card-header">Form</div>
                         <div class="card-body">
                             <form action="{{ route('addDepartment') }}" method="POST">

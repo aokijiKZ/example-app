@@ -12,7 +12,7 @@
                     @if (session('success'))
                         <div class="alert alert-success">{{ session('success') }}</div>
                     @endif
-                    <div class="card">
+                    <div class="card overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="card-header">Service table</div>
                         <table class="table">
                             <thead>
@@ -47,7 +47,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card">
+                    <div class="card overflow-hidden shadow-xl sm:rounded-lg">
                         <div class="card-header">Form</div>
                         <div class="card-body">
                             <form action="{{ route('addService')}}" method="POST" enctype="multipart/form-data">
