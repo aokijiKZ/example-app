@@ -35,7 +35,7 @@
                                             <a href="{{ url('/service/edit/'.$service->id) }}"
                                                 class="btn btn-primary">Edit</a>
                                             <a href="{{ url('/service/delete/'.$service->id) }}"
-                                                class="btn btn-danger">Delete</a>
+                                                class="btn btn-danger" onclick="return confirm('Do you want to delete service data?')">Delete</a>
                                         </td>
                                     </tr>
                                 @endforeach

@@ -21,7 +21,7 @@ class ServiceController extends Controller
         $request->validate(
             [
                 'service_name' => 'required|unique:services|max:100',    //table departments ต้องไม่มีชื่อซ้ำ
-                'service_image' => 'required|mimes:jpg,png,jpeg',
+                'service_image' => 'required|mimes:jpg,png,jpeg|max:10240',
             ],
             [
                 'service_name.required' => 'Please input service name.',  //ปรับ error message
@@ -29,6 +29,7 @@ class ServiceController extends Controller
                 'service_name.unique' => 'This service already has a name.',
                 'service_image.required' => 'Please insert a image.',
                 'service_image.mimes' => 'Only supports .png, .jpg, jpeg files.',
+                'service_image.max' => 'Image file size not more than 10M.',
             ]
         );
 
@@ -109,8 +110,17 @@ class ServiceController extends Controller
 
             return redirect()->route('service')->with('success', 'Updated data successfully!');
         }
-
-
-        return redirect()->route('department')->with('success', 'Updated data successfully!');
     }
+
+    public function delete($id){
+        //ลบภาพ
+        $image = Service::find($id)->service_image;
+        unlink($image);
+
+        //ลบข้อมูล
+        $dataDelete = Service::find($id)->delete(); 
+
+        return redirect()->back()->with('success','Deleted data Successfully!');
+    }
+
 }
