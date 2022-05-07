@@ -32,9 +32,9 @@
                                         <td>{{ $service->service_name }}</td> {{-- function user ใน model department เเละ fill name ของ table --}}
                                         <td>{{ $service->created_at->diffForHumans() }}</td>
                                         <td>
-                                            <a href="{{ url('/') }}"
+                                            <a href="{{ url('/service/edit/'.$service->id) }}"
                                                 class="btn btn-primary">Edit</a>
-                                            <a href="{{ url('/') }}"
+                                            <a href="{{ url('/service/delete/'.$service->id) }}"
                                                 class="btn btn-danger">Delete</a>
                                         </td>
                                     </tr>
